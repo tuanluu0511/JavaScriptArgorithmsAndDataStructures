@@ -1,5 +1,42 @@
 'use strict';
 
+//SLIDING WINDOW
+
+//Refactor
+function maxSubarraySum(arr, num) {
+  let maxSum = 0;
+  let tempSum = 0;
+  if (arr < num) return null;
+
+  for (let i = 0; i < num; i++) {
+    maxSum += arr[i];
+  }
+  tempSum = maxSum;
+  for (let i = num; i < arr.length; i++) {
+    tempSum = tempSum - arr[i - num] + arr[i];
+    // if (tempSum > maxSum) maxSum = tempSum;
+    maxSum = Math.max(maxSum, tempSum);
+  }
+  return maxSum;
+}
+console.log(maxSubarraySum([1, 2, 5, 2, 8, 1, 5], 2)); //10
+console.log(maxSubarraySum([2, 6, 9, 2, 1, 8, 5, 6, 3], 3)); //19
+
+// function maxSubarraySum(arr, num) {
+//   if (num > arr.length) return null;
+//   let max = -Infinity;
+
+//   for (let i = 0; i < arr.length - num + 1; i++) {
+//     let temp = 0;
+//     for (let j = 0; j < num; j++) {
+//       temp += arr[i + j];
+//     }
+//     if (temp > max) max = temp;
+//   }
+//   return max;
+// }
+
+/*
 //MULTIPLE POINTER PATTERN
 //countUnique Value
 
@@ -33,7 +70,6 @@ console.log(countUniqueValues([1, 2, 3, 4, 4, 4, 7, 7, 12, 12, 13]));
 console.log(countUniqueValues([]));
 console.log(countUniqueValues([-2, -1, -1, 0, 1]));
 
-/*
 function sumZero(arr) {
   let left = 0;
   let right = arr.length - 1;
