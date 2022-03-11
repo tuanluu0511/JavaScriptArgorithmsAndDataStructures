@@ -1,6 +1,39 @@
 'use strict';
 
 //MULTIPLE POINTER PATTERN
+//countUnique Value
+
+// function countUniqueValues(arr) {
+//   let result = {};
+//   for (let i of arr) {
+//     result[i] = result[i] || 1;
+//   }
+//   return Object.keys(result).length;
+// }
+
+function countUniqueValues(arr) {
+  let i = 0;
+  let j = i + 1;
+  if (arr === undefined || arr.length === 0) return i;
+
+  // if (arr === []) return 0;
+  // console.log(arr.length);
+  while (j <= arr.length - 1) {
+    if (arr[j] !== arr[i]) {
+      i++;
+      arr[i] = arr[j];
+      j++;
+    } else j++;
+  }
+  return i + 1;
+}
+
+console.log(countUniqueValues([1, 1, 1, 1, 1, 2]));
+console.log(countUniqueValues([1, 2, 3, 4, 4, 4, 7, 7, 12, 12, 13]));
+console.log(countUniqueValues([]));
+console.log(countUniqueValues([-2, -1, -1, 0, 1]));
+
+/*
 function sumZero(arr) {
   let left = 0;
   let right = arr.length - 1;
@@ -17,7 +50,6 @@ function sumZero(arr) {
 
 console.log(sumZero([-4, -3, -2, -1, 0, 1, 2, 3, 10])); //[-3,3]
 
-/*
 //FREQUENCY COUNTER - VALID ANAGRAM
 
 function validAnagram(first, second) {
