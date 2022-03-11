@@ -1,5 +1,67 @@
 'use strict';
 
+/*
+//FREQUENCY COUNTER - VALID ANAGRAM
+
+function validAnagram(first, second) {
+  if (first.length !== second.length) {
+    return false;
+  }
+
+  const lookup = {};
+
+  for (let i = 0; i < first.length; i++) {
+    let letter = first[i];
+    // if letter exists, increment, otherwise set to 1
+    lookup[letter] ? (lookup[letter] += 1) : (lookup[letter] = 1);
+  }
+  console.log(lookup);
+
+  for (let i = 0; i < second.length; i++) {
+    let letter = second[i];
+    // can't find letter or letter is zero then it's not an anagram
+    if (!lookup[letter]) {
+      return false;
+    } else {
+      lookup[letter] -= 1;
+    }
+  }
+
+  return true;
+}
+
+console.log(validAnagram('', ''));
+console.log(validAnagram('azaz', 'aazz'));
+console.log(validAnagram('rat', 'cat'));
+console.log(validAnagram('anagrams', 'nagarams'));
+function validAnagram(arr1, arr2) {
+  if (arr1.length !== arr2.length) return false;
+  if ((arr1 === arr2) === '') return true;
+
+  let frequencyCounter1 = {};
+  let frequencyCounter2 = {};
+
+  for (let val of arr1) {
+    frequencyCounter1[val] = (frequencyCounter1[val] || 0) + 1;
+  }
+  console.log(frequencyCounter1);
+  for (let val of arr2) {
+    frequencyCounter2[val] = (frequencyCounter2[val] || 0) + 1;
+  }
+  console.log(frequencyCounter2);
+
+  for (let key in frequencyCounter1) {
+    if (frequencyCounter1[key] !== frequencyCounter2[key]) return false;
+  }
+
+  return true;
+}
+console.log(validAnagram('', ''));
+console.log(validAnagram('azaz', 'aazz'));
+console.log(validAnagram('rat', 'cat'));
+console.log(validAnagram('anagrams', 'nagarams'));
+
+**************************
 //PROBLEM SOLVING PATTERN:
 // 1.Frequency counters:
 // function same(arr1, arr2) {
@@ -47,7 +109,6 @@ function same(arr1, arr2) {
 
 console.log(same([1, 2, 3, 1], [4, 1, 9, 1]));
 // console.log(same([''], ['']));
-/*
 // Write a function that receive a string and return character count in string.
 //Sample input: 'Your PIN number is 1234'
 //Output:
