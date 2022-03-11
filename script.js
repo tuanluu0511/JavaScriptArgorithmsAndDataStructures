@@ -1,4 +1,53 @@
 'use strict';
+
+//PROBLEM SOLVING PATTERN:
+// 1.Frequency counters:
+// function same(arr1, arr2) {
+//   if (arr1.length !== arr2.length) {
+//     return false;
+//   }
+//   for (let i = 0; i < arr1.length; i++) {
+//     let index = arr2.indexOf(arr1[i] ** 2);
+//     if (index === -1) {
+//       return false;
+//     }
+//     arr2.splice(index, 1);
+//   }
+//   return true;
+// }
+
+function same(arr1, arr2) {
+  if (arr1.length !== arr2.length) {
+    return false;
+  }
+
+  let frequencyCounter1 = {};
+  let frequencyCounter2 = {};
+
+  for (let value of arr1) {
+    frequencyCounter1[value] = (frequencyCounter1[value] || 0) + 1;
+  }
+
+  for (let value of arr2) {
+    frequencyCounter2[value] = (frequencyCounter2[value] || 0) + 1;
+  }
+
+  for (let key in frequencyCounter1) {
+    if (!(key ** 2 in frequencyCounter2)) {
+      return false;
+    }
+    if (frequencyCounter2[key ** 2] !== frequencyCounter1[key]) {
+      return false;
+    }
+  }
+  console.log(frequencyCounter1);
+  console.log(frequencyCounter2);
+  return true;
+}
+
+console.log(same([1, 2, 3, 1], [4, 1, 9, 1]));
+// console.log(same([''], ['']));
+/*
 // Write a function that receive a string and return character count in string.
 //Sample input: 'Your PIN number is 1234'
 //Output:
@@ -83,3 +132,4 @@ console.log(str1);
 // };
 
 // console.log(countChars('Now is the time'));
+*/
