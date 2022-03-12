@@ -1,5 +1,37 @@
 'use strict';
 
+/*
+//Coding Exercise 3: Frequency Counter - sameFrequency
+
+function sameFrequency(num1, num2) {
+  if ((num1 && num2) === undefined || (num1 && num2).length === 0)
+    return 'No number!';
+  let firstNum = {};
+  let secondNum = {};
+
+  let num1String = num1.toString();
+  let num2String = num2.toString();
+
+  for (let val of num1String) {
+    firstNum[val] = (firstNum[val] || 0) + 1;
+  }
+
+  for (let val of num2String) {
+    secondNum[val] = (secondNum[val] || 0) + 1;
+  }
+
+  for (let key in firstNum) {
+    if (firstNum[key] !== secondNum[key]) {
+      return false;
+    }
+    return true;
+  }
+}
+
+console.log(sameFrequency(182, 281)); //true
+
+//Divide and Conquer
+
 //SLIDING WINDOW
 
 //Refactor
@@ -36,7 +68,6 @@ console.log(maxSubarraySum([2, 6, 9, 2, 1, 8, 5, 6, 3], 3)); //19
 //   return max;
 // }
 
-/*
 //MULTIPLE POINTER PATTERN
 //countUnique Value
 
