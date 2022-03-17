@@ -1,0 +1,17 @@
+.row {
+  height: 100vh;
+  color: #fff;
+  font-size: 30px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-image: linear-gradient(to right, aquamarine, aqua);
+}
+
+/* .col {
+  height: 200px;
+  width: 300px;
+  background-color: orangered;
+  margin: 20px;
+} */

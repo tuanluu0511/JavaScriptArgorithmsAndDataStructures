@@ -1,6 +1,118 @@
 'use strict';
 
 /*
+//Min sub array length
+
+function minSubArrayLen(nums, sum) {
+  let total = 0;
+  let start = 0;
+  let end = 0;
+  let minLen = Infinity;
+
+  while (start < nums.length) {
+    // if current window doesn't add up to the given sum then
+    // move the window to right
+    if (total < sum && end < nums.length) {
+      total += nums[end];
+      end++;
+    }
+    // if current window adds up to at least the sum given then
+    // we can shrink the window
+    else if (total >= sum) {
+      minLen = Math.min(minLen, end - start);
+      total -= nums[start];
+      start++;
+    }
+    // current total less than required total but we reach the end, need this or else we'll be in an infinite loop
+    else {
+      break;
+    }
+  }
+
+  return minLen === Infinity ? 0 : minLen;
+}
+
+console.log(minSubArrayLen([2, 3, 1, 2, 4, 3], 7)); //2
+console.log(minSubArrayLen([2, 1, 6, 5, 4], 9)); //2
+console.log(minSubArrayLen([3, 1, 7, 11, 2, 9, 8, 21, 62, 33, 19], 52)); //1
+
+// SLIDING WINDOW - maxSubarraySum
+
+function maxSubarraySum(arr, num) {
+  if (arr.length < num) return null;
+  let maxSum = 0;
+  let tempSum = 0;
+
+  for (let i = 0; i < num; i++) {
+    maxSum += arr[i];
+  }
+
+  tempSum = maxSum;
+
+  for (let i = 0; i < arr.length - num + 1; i++) {
+    tempSum = tempSum - arr[i] + arr[num + i];
+    if (tempSum > maxSum) maxSum = tempSum;
+  }
+  return maxSum;
+}
+
+console.log(maxSubarraySum([100, 200, 300, 400], 2)); //700
+console.log(maxSubarraySum([1, 4, 2, 10, 23, 3, 1, 0, 20], 4)); //39
+console.log(maxSubarraySum([-3, 4, 0, -2, 6, -1], 2)); //5
+console.log(maxSubarraySum([3, -2, 7, -4, 1, -1, 4, -2, 1], 2)); //5
+console.log(maxSubarraySum([2, 3], 3)); //null
+
+//Coding Exercise 5: Multiple Pointers - averagePair
+
+function isSubsequence(str1, str2) {
+  var i = 0;
+  var j = 0;
+  if (!str1) return true;
+  while (j < str2.length) {
+    if (str2[j] === str1[i]) i++;
+    if (i === str1.length) return true;
+    j++;
+  }
+  return false;
+}
+
+console.log(isSubsequence('hello', 'hello world')); //true
+console.log(isSubsequence('sing', 'sting')); //true
+console.log(isSubsequence('abc', 'abracadabra')); //true
+console.log(isSubsequence('abc', 'acb')); //false
+
+function averagePair(arr, num) {
+  let start = 0;
+  let end = arr.length - 1;
+  while (start < end) {
+    let avg = (arr[start] + arr[end]) / 2;
+    if (avg === num) return true;
+    else if (avg < num) start++;
+    else end--;
+  }
+  return false;
+}
+
+console.log(averagePair([1, 2, 3], 2.5)); //true
+console.log(averagePair([1, 3, 3, 5, 6, 7, 10, 12, 19], 8)); //true
+console.log(averagePair([-1, 0, 3, 4, 5, 6], 4.1)); //false
+console.log(averagePair([], 4)); //false
+
+//Coding Exercise 4: Frequency Counter / Multiple Pointers - areThereDuplicates
+
+function areThereDuplicates(...arr) {
+  let result = {};
+  for (let i of arr) {
+    result[i] = (result[i] || 0) + 1;
+    if (result[i] > 1) return true;
+  }
+  return false;
+}
+
+console.log(areThereDuplicates(1, 2, 3)); //false
+console.log(areThereDuplicates(1, 2, 2)); //true
+console.log(areThereDuplicates('a', 'b', 'c', 'a')); //true
+
 //Coding Exercise 3: Frequency Counter - sameFrequency
 
 function sameFrequency(num1, num2) {
