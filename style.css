@@ -6,9 +6,17 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-image: linear-gradient(to right, aquamarine, aqua);
+  /* background-image: linear-gradient(to right, aquamarine, aqua); */
+  background-color: #444;
+  position: relative;
 }
 
+.date {
+  color: #fff;
+  position: absolute;
+  bottom: 0px;
+  right: 100px;
+}
 /* .col {
   height: 200px;
   width: 300px;

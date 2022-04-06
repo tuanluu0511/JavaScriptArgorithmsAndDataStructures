@@ -1,6 +1,64 @@
 'use strict';
+///////////////////////
+// RECURSION
 
+function indexOf(arr, num) {
+  let mid = 0;
+  let left = 0;
+  let right = arr.length;
+  while (left <= right) {
+    mid = Math.floor((left + right) / 2);
+    if (arr[mid] === num) {
+      return mid;
+    } else if (arr[mid] > num) {
+      right = mid - 1;
+    } else {
+      left = mid + 1;
+    }
+  }
+  return -1;
+}
+
+const result = indexOf(
+  [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+  -2
+);
+console.log(result);
+//   0 1 2 3 4 5
 /*
+//POWER SOLUTION
+function power(base, exponent) {
+  if (exponent === 0) return 1;
+  return base * power(base, exponent - 1);
+}
+
+//FACTORIAL SOLUTION
+function factorial(x) {
+  if (x < 0) return 0;
+  if (x <= 1) return 1;
+  return x * factorial(x - 1);
+}
+
+//PRODUCT OF ARRAY SOLUTION
+function productOfArray(arr) {
+  if (arr.length === 0) {
+    return 1;
+  }
+  return arr[0] * productOfArray(arr.slice(1));
+}
+
+//RECURSIVE RANGE SOLUTION
+function recursiveRange(x) {
+  if (x === 0) return 0;
+  return x + recursiveRange(x - 1);
+}
+
+//FIBONACCI SOLUTION
+function fib(n) {
+  if (n <= 2) return 1;
+  return fib(n - 1) + fib(n - 2);
+}
+
 //Min sub array length
 
 function minSubArrayLen(nums, sum) {
